@@ -7,7 +7,10 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "./public")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 
 const db = new sqlite3.Database("./database.db");
 
@@ -20,26 +23,31 @@ CREATE TABLE IF NOT EXISTS mensajes (
 )
 `);
 
-// CONTACTO
 app.post("/contacto", (req, res) => {
   const { nombre, email, mensaje } = req.body;
+
+  if (!nombre || !email) {
+    return res.status(400).json({ error: "Faltan datos" });
+  }
 
   db.run(
     "INSERT INTO mensajes (nombre, email, mensaje) VALUES (?, ?, ?)",
     [nombre, email, mensaje],
-    () => res.json({ ok: true })
+    function (err) {
+      if (err) {
+        return res.status(500).json({ error: "Error DB" });
+      }
+      res.json({ ok: true });
+    }
   );
 });
 
-// ADMIN (ver mensajes)
 app.get("/mensajes", (req, res) => {
-  db.all("SELECT * FROM mensajes ORDER BY id DESC", [], (err, rows) => {
+  db.all("SELECT * FROM mensajes", [], (err, rows) => {
     res.json(rows);
   });
 });
 
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  console.log("Servidor en puerto", PORT);
+app.listen(3000, () => {
+  console.log("Servidor en http://localhost:3000");
 });
