@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Aaron Gonzalez | Portfolio</title>
+<link rel="stylesheet" href="./style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<nav id="navbar">
+  <h2>Aaron.dev</h2>
+  <ul>
+    <li><a href="#sobre">Sobre mí</a></li>
+    <li><a href="#proyectos">Proyectos</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<header>
+  <h1>Creo experiencias web modernas</h1>
+  <p>Desarrollo sitios que convierten y generan impacto</p>
+  <button id="cta">Trabajemos juntos</button>
+</header>
+
+<section id="sobre" class="reveal">
+  <h2>Sobre mí</h2>
+  <p>Desarrollador Front-End con backend funcional. Diseño, código y soluciones reales.</p>
+</section>
+
+<section id="proyectos" class="reveal">
+  <h2>Proyectos</h2>
+  <div id="projectsContainer" class="grid"></div>
+</section>
+
+<section id="servicios" class="reveal">
+  <h2>Servicios</h2>
+  <div class="grid">
+    <div class="card">🌐 Desarrollo Web</div>
+    <div class="card">🎨 UI/UX</div>
+    <div class="card">📄 CVs</div>
+    <div class="card">⚙️ Soporte</div>
+  </div>
+</section>
+
+<section id="contacto" class="reveal">
+  <h2>Contacto</h2>
+
+  <form id="form">
+    <input type="text" id="nombre" placeholder="Nombre" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <textarea id="mensaje" placeholder="Mensaje"></textarea>
+    <button type="submit">Enviar</button>
+  </form>
+
+  <p id="status"></p>
+</section>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span id="closeModal">×</span>
+    <h3 id="modalTitle"></h3>
+    <p id="modalDesc"></p>
+  </div>
+</div>
+
+<script src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Admin</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+<h1>Panel de Mensajes</h1>
+
+<table id="tabla">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Email</th>
+      <th>Mensaje</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<script>
+fetch("/mensajes")
+.then(res => res.json())
+.then(data => {
+  const tbody = document.querySelector("tbody");
+
+  data.forEach(m => {
+    const row = `
+      <tr>
+        <td>${m.nombre}</td>
+        <td>${m.email}</td>
+        <td>${m.mensaje}</td>
+      </tr>
+    `;
+    tbody.innerHTML += row;
+  });
+});
+</script>
+
+</body>
+</html>
